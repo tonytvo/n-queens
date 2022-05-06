@@ -1,8 +1,8 @@
-package com.glidedrose;
+package com.nqueens;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class NQueensTest {
 
@@ -10,7 +10,7 @@ public class NQueensTest {
     public void foo() {
         NQueens app = new NQueens();
         //app.findSolutions();
-	fail();
+	    fail();
     }
 
 }
