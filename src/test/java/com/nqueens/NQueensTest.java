@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class NQueensTest {
 
     @Disabled
@@ -23,8 +26,20 @@ public class NQueensTest {
     void givenBoardSize3AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 1);
+        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 1, BoardInfo.of(4));
 
-        Approvals.verify(candidates);
+        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1))));
     }
+
+    @Disabled
+    @Test
+    void givenBoardSize4AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21And31() {
+        QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
+
+        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 1, BoardInfo.of(4));
+
+        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1),
+                IndexCoordinate.of(3, 1))));
+    }
+
 }

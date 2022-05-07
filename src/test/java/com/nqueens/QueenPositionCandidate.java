@@ -2,6 +2,8 @@ package com.nqueens;
 
 import com.google.common.collect.ImmutableSet;
 
+import java.util.Objects;
+
 public class QueenPositionCandidate {
     private final ImmutableSet<IndexCoordinate> _candidateCoordinates;
 
@@ -11,6 +13,19 @@ public class QueenPositionCandidate {
 
     public static QueenPositionCandidate of(ImmutableSet<IndexCoordinate> candidateCoordinates) {
         return new QueenPositionCandidate(candidateCoordinates);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QueenPositionCandidate that = (QueenPositionCandidate) o;
+        return _candidateCoordinates.equals(that._candidateCoordinates);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_candidateCoordinates);
     }
 
     @Override
