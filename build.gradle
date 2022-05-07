@@ -22,11 +22,13 @@ repositories {
 
 dependencies {
 
-    testRuntimeOnly("com.google.code.gson:gson:2.9.0")
-    implementation("com.google.guava:guava:31.1-jre")
-    testImplementation("com.approvaltests:approvaltests:15.3.0")
+    implementation "com.google.guava:guava:31.1-jre"
+
+    testRuntimeOnly "com.google.code.gson:gson:2.9.0"
+    testImplementation "com.approvaltests:approvaltests:15.3.0"
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.2'
+    testImplementation "org.assertj:assertj-core:3.22.0"
 }
 
 test {
