@@ -4,9 +4,13 @@ public class Coordinate {
     private final int rankNumber;
     private final char fileLetter;
 
-    public Coordinate(int rankNumber, char fileLetter) {
+    private Coordinate(int rankNumber, char fileLetter) {
         this.rankNumber = rankNumber;
         this.fileLetter = fileLetter;
+    }
+
+    public static Coordinate of(int rankNumber, char fileLetter) {
+        return new Coordinate(rankNumber, fileLetter);
     }
 
     @Override
