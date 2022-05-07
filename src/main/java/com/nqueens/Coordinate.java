@@ -9,7 +9,7 @@ public class Coordinate {
         this.fileLetter = fileLetter;
     }
 
-    public static Coordinate of(int rankNumber, char fileLetter) {
+    public static Coordinate of(char fileLetter, int rankNumber) {
         return new Coordinate(rankNumber, fileLetter);
     }
 
