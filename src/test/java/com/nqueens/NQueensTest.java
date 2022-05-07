@@ -1,16 +1,19 @@
 package com.nqueens;
 
+import com.google.common.collect.ImmutableSet;
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.util.Set;
 
 public class NQueensTest {
 
     @Test
     public void foo() {
-        NQueens app = new NQueens();
-        //app.findSolutions();
-	    fail();
-    }
+        NQueens nQueens = new NQueens();
 
+        Set<QueenPosition> queenPositions = nQueens.findQueenPositions(4);
+
+        Approvals.verify(queenPositions);
+    }
 }
