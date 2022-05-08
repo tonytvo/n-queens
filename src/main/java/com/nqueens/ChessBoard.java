@@ -17,7 +17,7 @@ class ChessBoard {
         return new ChessBoard(size);
     }
 
-    private int getSize() {
+    public int getSize() {
         return _size;
     }
 

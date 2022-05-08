@@ -3,6 +3,7 @@ package com.nqueens;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class QueenPositionCandidate {
     private final ImmutableSet<IndexCoordinate> _candidateCoordinates;
@@ -31,5 +32,9 @@ public class QueenPositionCandidate {
     @Override
     public String toString() {
         return String.format("{%s}", _candidateCoordinates);
+    }
+
+    public Set<IndexCoordinate> getCandidates() {
+        return _candidateCoordinates;
     }
 }

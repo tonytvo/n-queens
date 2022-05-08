@@ -1,9 +1,12 @@
 package com.nqueens;
 
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class QueenPosition {
-    private final Set<IndexCoordinate> validPositions;
+    private Set<IndexCoordinate> validPositions;
 
     @Override
     public String toString() {
@@ -33,5 +36,26 @@ public class QueenPosition {
 
     private boolean isHorizontalThreat(IndexCoordinate coord1, IndexCoordinate coord2) {
         return coord1.isSameRow(coord2);
+    }
+
+    public boolean isValidSolution(int boardSize) {
+        return validPositions.size() >= boardSize;
+    }
+
+    public void addValidPosition(IndexCoordinate candidate) {
+        validPositions = Stream.concat(validPositions.stream(), Stream.of(candidate)).collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QueenPosition that = (QueenPosition) o;
+        return validPositions.equals(that.validPositions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(validPositions);
     }
 }
