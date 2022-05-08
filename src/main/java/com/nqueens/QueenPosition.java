@@ -3,15 +3,15 @@ package com.nqueens;
 import java.util.Set;
 
 public class QueenPosition {
-    private final Set<IndexCoordinate> coordinates;
+    private final Set<IndexCoordinate> validPositions;
 
     @Override
     public String toString() {
-        return String.format("{%s}", coordinates);
+        return String.format("{%s}", validPositions);
     }
 
     private QueenPosition(Set<IndexCoordinate> coordinates) {
-        this.coordinates = coordinates;
+        this.validPositions = coordinates;
     }
 
     public static QueenPosition of(Set<IndexCoordinate> coordinates) {
@@ -19,7 +19,7 @@ public class QueenPosition {
     }
 
     public boolean isValid(IndexCoordinate coordinate) {
-        boolean isHorizontalOrDiagonalOrVerticalThreat = coordinates.stream().anyMatch(coord -> isHorizontalThreat(coord, coordinate) || isDiagonalThreat(coord, coordinate) || isVerticalThreat(coord, coordinate));
+        boolean isHorizontalOrDiagonalOrVerticalThreat = validPositions.stream().anyMatch(coord -> isHorizontalThreat(coord, coordinate) || isDiagonalThreat(coord, coordinate) || isVerticalThreat(coord, coordinate));
         return !isHorizontalOrDiagonalOrVerticalThreat;
     }
 
