@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class NQueensTest {
 
@@ -26,12 +25,11 @@ public class NQueensTest {
     void givenBoardSize3AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 1, BoardInfo.of(4));
+        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 1, BoardInfo.of(3));
 
         assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1))));
     }
 
-    @Disabled
     @Test
     void givenBoardSize4AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21And31() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
@@ -40,6 +38,15 @@ public class NQueensTest {
 
         assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1),
                 IndexCoordinate.of(3, 1))));
+    }
+
+    @Test
+    void givenBoardSize4AndQueenPlacedAt20And01_shouldReturnQueenCandidatesAt32() {
+        QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(2, 0), IndexCoordinate.of(0, 1)));
+
+        QueenPositionCandidate candidates = new QueenPositionCandidateConstructor().construct(position, 2, BoardInfo.of(4));
+
+        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(3, 2))));
     }
 
 }

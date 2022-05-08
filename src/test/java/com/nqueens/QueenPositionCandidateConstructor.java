@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 
 public class QueenPositionCandidateConstructor {
     public QueenPositionCandidate construct(QueenPosition position, int col, BoardInfo boardInfo) {
-        //getAllCoordinateForCol(col, boardInfo).stream().filter(coordinate -> position.isValid(coordinate)).collect(Collectors.toSet());
-        return QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1)));
+        Set<IndexCoordinate> candidates = getAllCoordinateForCol(col, boardInfo).stream().filter(position::isValid).collect(Collectors.toSet());
+        return QueenPositionCandidate.of(ImmutableSet.copyOf(candidates));
     }
 
     private Set<IndexCoordinate> getAllCoordinateForCol(int col, BoardInfo boardInfo) {
