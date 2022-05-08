@@ -6,15 +6,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class BoardInfo {
+class ChessBoard {
     private final int _size;
 
-    private BoardInfo(int size) {
+    private ChessBoard(int size) {
         this._size = size;
     }
 
-    public static BoardInfo of(int size) {
-        return new BoardInfo(size);
+    public static ChessBoard of(int size) {
+        return new ChessBoard(size);
     }
 
     private int getSize() {

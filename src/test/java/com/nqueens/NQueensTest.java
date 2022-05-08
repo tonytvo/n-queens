@@ -25,7 +25,7 @@ public class NQueensTest {
     void givenBoardSize3AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = BoardInfo.of(3).construct(position, 1);
+        QueenPositionCandidate candidates = ChessBoard.of(3).construct(position, 1);
 
         assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1))));
     }
@@ -34,7 +34,7 @@ public class NQueensTest {
     void givenBoardSize4AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21And31() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = BoardInfo.of(4).construct(position, 1);
+        QueenPositionCandidate candidates = ChessBoard.of(4).construct(position, 1);
 
         assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1),
                 IndexCoordinate.of(3, 1))));
@@ -44,7 +44,7 @@ public class NQueensTest {
     void givenBoardSize4AndQueenPlacedAt20And01_shouldReturnQueenCandidatesAt32() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(2, 0), IndexCoordinate.of(0, 1)));
 
-        QueenPositionCandidate candidates = BoardInfo.of(4).construct(position, 2);
+        QueenPositionCandidate candidates = ChessBoard.of(4).construct(position, 2);
 
         assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(3, 2))));
     }
