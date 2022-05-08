@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class QueenPosition {
-    private Set<IndexCoordinate> validQueenPositionsOnBoard;
+    private final Set<IndexCoordinate> validQueenPositionsOnBoard;
 
     @Override
     public String toString() {

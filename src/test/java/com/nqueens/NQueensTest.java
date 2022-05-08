@@ -3,6 +3,8 @@ package com.nqueens;
 import com.google.common.collect.ImmutableSet;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NQueensTest {
@@ -210,28 +212,28 @@ public class NQueensTest {
     void givenBoardSize3AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = ChessBoard.of(3).construct(position, 1);
+        Set<IndexCoordinate> candidates = ChessBoard.of(3).constructCandidates(position, 1);
 
-        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1))));
+        assertThat(candidates).isEqualTo(ImmutableSet.of(IndexCoordinate.of(2, 1)));
     }
 
     @Test
     void givenBoardSize4AndQueenPlacedAt00_shouldReturnQueenCandidatesAt21And31() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(0, 0)));
 
-        QueenPositionCandidate candidates = ChessBoard.of(4).construct(position, 1);
+        Set<IndexCoordinate> candidates = ChessBoard.of(4).constructCandidates(position, 1);
 
-        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(2, 1),
-                IndexCoordinate.of(3, 1))));
+        assertThat(candidates).isEqualTo(ImmutableSet.of(IndexCoordinate.of(2, 1),
+                IndexCoordinate.of(3, 1)));
     }
 
     @Test
     void givenBoardSize4AndQueenPlacedAt20And01_shouldReturnQueenCandidatesAt32() {
         QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(2, 0), IndexCoordinate.of(0, 1)));
 
-        QueenPositionCandidate candidates = ChessBoard.of(4).construct(position, 2);
+        Set<IndexCoordinate> candidates = ChessBoard.of(4).constructCandidates(position, 2);
 
-        assertThat(candidates).isEqualTo(QueenPositionCandidate.of(ImmutableSet.of(IndexCoordinate.of(3, 2))));
+        assertThat(candidates).isEqualTo(ImmutableSet.of(IndexCoordinate.of(3, 2)));
     }
 
 }

@@ -17,18 +17,21 @@ class ChessBoard {
         return new ChessBoard(size);
     }
 
-    public int getSize() {
-        return _size;
+    public boolean isValidSolution(QueenPosition queenPosition) {
+        return queenPosition.isValidSolution(getSize());
     }
 
-    public QueenPositionCandidate construct(QueenPosition position, int col) {
-        Set<IndexCoordinate> candidates = getAllCoordinateForCol(col).stream().filter(position::isValid).collect(Collectors.toSet());
-        return QueenPositionCandidate.of(ImmutableSet.copyOf(candidates));
+    public Set<IndexCoordinate> constructCandidates(QueenPosition position, int col) {
+        return getAllCoordinateForCol(col).stream().filter(position::isValid).collect(Collectors.toSet());
     }
 
     private Set<IndexCoordinate> getAllCoordinateForCol(int col) {
         return IntStream.range(0, getSize())
                 .mapToObj(row -> IndexCoordinate.of(row, col))
                 .collect(Collectors.toSet());
+    }
+
+    private int getSize() {
+        return _size;
     }
 }
