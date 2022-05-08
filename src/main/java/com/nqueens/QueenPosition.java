@@ -6,15 +6,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class QueenPosition {
-    private Set<IndexCoordinate> validPositions;
+    private Set<IndexCoordinate> validQueenPositionsOnBoard;
 
     @Override
     public String toString() {
-        return String.format("{%s}", validPositions);
+        return String.format("{%s}", validQueenPositionsOnBoard);
     }
 
     private QueenPosition(Set<IndexCoordinate> coordinates) {
-        this.validPositions = coordinates;
+        this.validQueenPositionsOnBoard = coordinates;
     }
 
     public static QueenPosition of(Set<IndexCoordinate> coordinates) {
@@ -22,7 +22,7 @@ public class QueenPosition {
     }
 
     public boolean isValid(IndexCoordinate coordinate) {
-        boolean isHorizontalOrDiagonalOrVerticalThreat = validPositions.stream().anyMatch(coord -> isHorizontalThreat(coord, coordinate) || isDiagonalThreat(coord, coordinate) || isVerticalThreat(coord, coordinate));
+        boolean isHorizontalOrDiagonalOrVerticalThreat = validQueenPositionsOnBoard.stream().anyMatch(coord -> isHorizontalThreat(coord, coordinate) || isDiagonalThreat(coord, coordinate) || isVerticalThreat(coord, coordinate));
         return !isHorizontalOrDiagonalOrVerticalThreat;
     }
 
@@ -39,11 +39,11 @@ public class QueenPosition {
     }
 
     public boolean isValidSolution(int boardSize) {
-        return validPositions.size() >= boardSize;
+        return validQueenPositionsOnBoard.size() >= boardSize;
     }
 
-    public void addValidPosition(IndexCoordinate candidate) {
-        validPositions = Stream.concat(validPositions.stream(), Stream.of(candidate)).collect(Collectors.toSet());
+    public QueenPosition addValidPosition(IndexCoordinate candidate) {
+        return of(Stream.concat(validQueenPositionsOnBoard.stream(), Stream.of(candidate)).collect(Collectors.toSet()));
     }
 
     @Override
@@ -51,11 +51,12 @@ public class QueenPosition {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QueenPosition that = (QueenPosition) o;
-        return validPositions.equals(that.validPositions);
+
+        return validQueenPositionsOnBoard.equals(that.validQueenPositionsOnBoard);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(validPositions);
+        return Objects.hash(validQueenPositionsOnBoard);
     }
 }

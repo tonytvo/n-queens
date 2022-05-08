@@ -42,4 +42,9 @@ class QueenPositionTest {
         assertThat(position.isValid(IndexCoordinate.of(1, 1))).isFalse();
     }
 
+    @Test
+    void onVerticalThreat21And11_shouldReturnFalse() {
+        QueenPosition position = QueenPosition.of(ImmutableSet.of(IndexCoordinate.of(2, 1)));
+        assertThat(position.isValid(IndexCoordinate.of(1, 1))).isFalse();
+    }
 }
