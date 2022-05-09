@@ -1,7 +1,5 @@
 package com.nqueens;
 
-import com.google.common.collect.ImmutableSet;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,7 +20,7 @@ class ChessBoard {
     }
 
     public Set<IndexCoordinate> constructCandidates(QueenPosition position, int col) {
-        return getAllCoordinateForCol(col).stream().filter(position::isValid).collect(Collectors.toSet());
+        return getAllCoordinateForCol(col).stream().filter(position::canPlaceQueenAt).collect(Collectors.toSet());
     }
 
     private Set<IndexCoordinate> getAllCoordinateForCol(int col) {

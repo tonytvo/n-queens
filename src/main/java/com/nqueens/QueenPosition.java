@@ -21,7 +21,7 @@ public class QueenPosition {
         return new QueenPosition(coordinates);
     }
 
-    public boolean isValid(IndexCoordinate coordinate) {
+    public boolean canPlaceQueenAt(IndexCoordinate coordinate) {
         boolean isHorizontalOrDiagonalOrVerticalThreat = validQueenPositionsOnBoard.stream().anyMatch(coord -> isHorizontalThreat(coord, coordinate) || isDiagonalThreat(coord, coordinate) || isVerticalThreat(coord, coordinate));
         return !isHorizontalOrDiagonalOrVerticalThreat;
     }
@@ -42,7 +42,7 @@ public class QueenPosition {
         return validQueenPositionsOnBoard.size() >= boardSize;
     }
 
-    public QueenPosition addValidPosition(IndexCoordinate candidate) {
+    public QueenPosition addValidQueenPosition(IndexCoordinate candidate) {
         return of(Stream.concat(validQueenPositionsOnBoard.stream(), Stream.of(candidate)).collect(Collectors.toSet()));
     }
 

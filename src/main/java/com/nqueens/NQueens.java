@@ -32,7 +32,7 @@ class NQueens {
             col++;
             Set<IndexCoordinate> candidates = chessBoard.constructCandidates(currentPosition, col);
             for (IndexCoordinate candidate : candidates) {
-                findQueenPosition(allValidPositions, currentPosition.addValidPosition(candidate), col, chessBoard);
+                findQueenPosition(allValidPositions, currentPosition.addValidQueenPosition(candidate), col, chessBoard);
             }
         }
     }
