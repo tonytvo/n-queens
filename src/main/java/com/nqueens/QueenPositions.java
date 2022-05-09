@@ -41,4 +41,8 @@ public class QueenPositions {
     public int totalSolutions() {
         return validQueenPositions.size();
     }
+
+    public QueenPositions merge(QueenPositions that) {
+        return QueenPositions.of(Stream.concat(validQueenPositions.stream(), that.validQueenPositions.stream()).collect(Collectors.toSet()));
+    }
 }

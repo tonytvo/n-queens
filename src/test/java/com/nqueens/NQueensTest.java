@@ -1,6 +1,7 @@
 package com.nqueens;
 
 import com.google.common.collect.ImmutableSet;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
@@ -56,6 +57,15 @@ public class NQueensTest {
         QueenPositions queenPositions = nQueens.findQueenPositions(7);
 
         assertThat(queenPositions.totalSolutions()).isEqualTo(40);
+    }
+
+    @Test
+    public void givenBoardSizeOf11_shouldReturn2680QueenPositions() {
+        NQueens nQueens = new NQueens();
+
+        QueenPositions queenPositions = nQueens.findQueenPositions(11);
+
+        assertThat(queenPositions.totalSolutions()).isEqualTo(2680);
     }
 
     private QueenPositions createSingleQueenPositions(IndexCoordinate... coordinates) {

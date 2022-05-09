@@ -2,18 +2,17 @@ package com.nqueens;
 
 import com.google.common.collect.ImmutableSet;
 
+import java.util.Optional;
 import java.util.Set;
 
 class NQueens {
     public QueenPositions findQueenPositions(int boardSize) {
         ChessBoard board = ChessBoard.of(boardSize);
         Set<IndexCoordinate> candidates = board.constructCandidates(QueenPosition.of(ImmutableSet.of()), 0);
-        QueenPositions allValidPositions = QueenPositions.of(ImmutableSet.of());
-        for (IndexCoordinate candidate : candidates) {
-            QueenPosition validPosition = QueenPosition.of(ImmutableSet.of(candidate));
-            findQueenPosition(allValidPositions, validPosition, 0, board);
-        }
-        return allValidPositions;
+        Optional<QueenPositions> queenPositionsForFirstColumnCandidates = candidates.parallelStream()
+                .map(candidate -> findAllQueenPositionsForSingleCandidate(candidate, board))
+                .reduce(QueenPositions::merge);
+        return queenPositionsForFirstColumnCandidates.get();
     }
 
     public void findQueenPosition(QueenPositions allValidPositions,
@@ -35,6 +34,13 @@ class NQueens {
                 findQueenPosition(allValidPositions, currentPosition.addValidQueenPosition(candidate), col, chessBoard);
             }
         }
+    }
+
+    private QueenPositions findAllQueenPositionsForSingleCandidate(IndexCoordinate candidate, ChessBoard board) {
+        QueenPositions allValidPositions = QueenPositions.of(ImmutableSet.of());
+        QueenPosition currentPosition = QueenPosition.of(ImmutableSet.of(candidate));
+        findQueenPosition(allValidPositions, currentPosition, 0, board);
+        return allValidPositions;
     }
 
 }
